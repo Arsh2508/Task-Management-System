@@ -5,6 +5,13 @@
 User::User() : is_logged{false}
 {}
 
+User::User(const std::string& id, const std::string& name, const std::string& passwd)
+	: m_id{id}
+	, m_name{name}
+	, m_passwd{passwd}
+	, is_logged{true}
+{}
+
 User::User(const User& other)
 	: m_id{other.m_id}
 	, m_name{other.m_name}
@@ -77,17 +84,42 @@ User::~User(){
 
 
 void User::add_task(const Task& add){
-	m_tasks.push_back(new Task(add))	
+	m_tasks.push_back(new Task(add));	
 }
 
 
+void User::delete_task(const std::string& task_id){
+	for(size_t i = 0; i < m_tasks.size(); ++i){
+		if(m_tasks[i]->get_task_id() == task_id){
+			delete m_tasks[i];
+			m_tasks.erase(m_tasks.begin() + i);
+			return;
+		}
+	}
+	std::cout<<"Task not found !\n";
+}
 
 
+void User::list_task(){
+	for(size_t i = 0; i < m_tasks.size(); ++i){
+		std::cout<<"\n -Task "<< i+1<<"-"<<std::endl;
+		m_tasks[i]->display_info();
+	}
+}
 
+Task* User::search_task(const std::string& id){
+	for(size_t i = 0; i < m_tasks.size(); ++i){
+		if(m_tasks[i]->get_task_id() == id){
+			return m_tasks[i];
+		}
+	}
+	return nullptr;
+}
 
+void User::login(){
+	is_logged = true;
+}
 
-
-
-
-
-
+void User::logout(){
+	is_logged = false;
+}

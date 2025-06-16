@@ -78,7 +78,7 @@ void Task::display_info(){
 	std::cout<<"Task Id - "<<m_task_id;
 	std::cout<<"\nUID - "<<m_uid;
 	std::cout<<"\nTitle - "<<m_title;
-	std::cout<<"\nDesctiption - "<<m_description;
+	std::cout<<"\nDescription - "<<m_description;
 	std::cout<<"\nDeadline - "<<m_deadline;
 	std::cout<<"\nCategory - "<<m_category<<std::endl;
 }
@@ -86,6 +86,72 @@ void Task::display_info(){
 const std::string& Task::get_task_id() const{
 	return m_task_id;
 } 
+
+
+void Task::edit(){
+	std::cout<<"Enter Task ID: ";
+	std::getline(std::cin, m_task_id);
+
+	std::cout<<"Enter UID: ";
+	std::getline(std::cin, m_uid);
+
+	std::cout<<"Enter Title: ";
+	std::getline(std::cin, m_title);
+
+	std::cout<<"Enter Description: ";
+	std::getline(std::cin, m_description);
+
+	std::cout<<"Enter Deadline: ";
+	m_deadline.input();
+	
+	std::cin.ignore();
+
+	std::cout<<"Enter Category: ";
+	std::getline(std::cin, m_category);
+
+	int choice = 0;
+	std::cout<<"Enter Priority (1-LOW, 2-MID, 3-HIGH, 4-URGENT): ";
+	std::cin>>choice;
+
+	switch(choice){
+		case 1: set_prio(Prio::LOW);
+				break;
+		case 2:	set_prio(Prio::MID);
+				break;
+		case 3: set_prio(Prio::HIGH);
+				break;
+		case 4: set_prio(Prio::URGENT);
+				break;
+		default:
+			std::cout<<"Invalid input, defaulting priority to LOW\n";
+			set_prio(Prio::LOW);
+			break;
+	}
+
+	std::cout<<"Enter Status: (1-NOT_STARTED, 2-IN_PROGRESS, 3-COMPLETED): ";
+	std::cin>>choice;
+
+    switch(choice){
+        case 1: set_status(Status::NOT_STARTED);
+                break;
+        case 2: set_status(Status::IN_PROGRESS);
+                break;
+        case 3: set_status(Status::COMPLETED);
+                break;
+        default:
+            std::cout<<"Invalid input, defaulting to NOT_STARTED\n";
+            set_status(Status::NOT_STARTED);
+            break;
+   } 
+}
+
+
+
+
+
+
+
+
 
 
 

@@ -8,6 +8,7 @@
 class User{
 public:
 	User();
+	User(const std::string&, const std::string&, const std::string&);
 
 	User(const User&);
 	User& operator=(const User&);
@@ -21,7 +22,7 @@ public:
 	void delete_task(const std::string&);
 	void edit_task();
 	void list_task();
-	Task& search_task();
+	Task* search_task(const std::string&);
 
 	void login();
 	void logout();

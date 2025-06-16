@@ -12,13 +12,13 @@ public:
 	User(const User&);
 	User& operator=(const User&);
 
-	User(User&&);
-	User& operator=(User&&);
+	User(User&&) noexcept;
+	User& operator=(User&&) noexcept;
 
 	~User();
 
-	void add_task();
-	void delete_task();
+	void add_task(const Task&);
+	void delete_task(const std::string&);
 	void edit_task();
 	void list_task();
 	Task& search_task();

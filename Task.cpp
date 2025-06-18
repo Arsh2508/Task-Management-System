@@ -1,14 +1,30 @@
 #include "Task.hpp"
 #include <iostream>
 
+int Task::id_counter = 0;
+int Task::uid_counter = 0;
+
 Task::Task()
-	: m_prio{Prio::LOW}
+	: m_task_id{++id_counter}
+	, m_uid{++uid_counter}
+	, m_prio{Prio::LOW}
+	, m_status{Status::NOT_STARTED}
+{}
+
+Task::Task(const std::string& title, const std::string& description, Date& deadline, const std::string& category)
+	: m_task_id{++id_counter}
+	, m_uid{++uid_counter}
+	, m_title{title}
+	, m_description{description}
+	, m_deadline{deadline}
+	, m_category{category}
+	, m_prio{Prio::LOW}
 	, m_status{Status::NOT_STARTED}
 {}
 
 Task::Task(const Task& other) 
-	: m_task_id{other.m_task_id}
-	, m_uid{other.m_uid}
+	: m_task_id{++id_counter}
+	, m_uid{++uid_counter}
 	, m_title{other.m_title}
 	, m_description{other.m_description}
 	, m_deadline{other.m_deadline}
@@ -23,8 +39,6 @@ Task& Task::operator=(const Task& rhs){
 	if(this == &rhs){
 		return *this;
 	}
-	m_task_id = rhs.m_task_id;
-	m_uid = rhs.m_uid;
 	m_title = rhs.m_title;
 	m_description = rhs.m_description;
 	m_deadline = rhs.m_deadline;
@@ -83,18 +97,12 @@ void Task::display_info(){
 	std::cout<<"\nCategory - "<<m_category<<std::endl;
 }
 
-const std::string& Task::get_task_id() const{
+const int Task::get_task_id() const{
 	return m_task_id;
 } 
 
 
 void Task::edit(){
-	std::cout<<"Enter Task ID: ";
-	std::getline(std::cin, m_task_id);
-
-	std::cout<<"Enter UID: ";
-	std::getline(std::cin, m_uid);
-
 	std::cout<<"Enter Title: ";
 	std::getline(std::cin, m_title);
 

@@ -2,18 +2,20 @@
 #include "Task.hpp"
 #include <iostream>
 
+int User::id_counter = 0;
+
 User::User() : is_logged{false}
 {}
 
-User::User(const std::string& id, const std::string& name, const std::string& passwd)
-	: m_id{id}
+User::User(const std::string& name, const std::string& passwd)
+	: m_id{++id_counter}
 	, m_name{name}
 	, m_passwd{passwd}
 	, is_logged{true}
 {}
 
 User::User(const User& other)
-	: m_id{other.m_id}
+	: m_id{++id_counter}
 	, m_name{other.m_name}
 	, m_passwd{other.m_passwd}
 	, is_logged{other.is_logged}
@@ -27,8 +29,6 @@ User& User::operator=(const User& rhs){
 	if(this == &rhs){
 		return *this;
 	}
-
-	m_id = rhs.m_id;
 	m_name = rhs.m_name;
 	m_passwd = rhs.m_passwd;
 	is_logged = rhs.is_logged;
@@ -47,7 +47,7 @@ User& User::operator=(const User& rhs){
 }
 
 User::User(User&& other) noexcept
-	: m_id{std::move(other.m_id)}
+	: m_id{other.m_id}
 	, m_name{std::move(other.m_name)}
 	, m_passwd{std::move(other.m_passwd)}
 	, m_tasks{std::move(other.m_tasks)}
@@ -88,7 +88,7 @@ void User::add_task(const Task& add){
 }
 
 
-void User::delete_task(const std::string& task_id){
+void User::delete_task(const int task_id){
 	for(size_t i = 0; i < m_tasks.size(); ++i){
 		if(m_tasks[i]->get_task_id() == task_id){
 			delete m_tasks[i];
@@ -107,7 +107,7 @@ void User::list_task(){
 	}
 }
 
-Task* User::search_task(const std::string& id){
+Task* User::search_task(const int id){
 	for(size_t i = 0; i < m_tasks.size(); ++i){
 		if(m_tasks[i]->get_task_id() == id){
 			return m_tasks[i];

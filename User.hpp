@@ -8,7 +8,7 @@
 class User{
 public:
 	User();
-	User(const std::string&, const std::string&, const std::string&);
+	User(const std::string&, const std::string&);
 
 	User(const User&);
 	User& operator=(const User&);
@@ -19,16 +19,18 @@ public:
 	~User();
 
 	void add_task(const Task&);
-	void delete_task(const std::string&);
+	void delete_task(const int);
 	void edit_task();
 	void list_task();
-	Task* search_task(const std::string&);
+	Task* search_task(const int);
 
 	void login();
 	void logout();
 
 private:
-	std::string m_id;
+	static int id_counter;
+
+	int m_id;
 	std::string m_name;
 	std::string m_passwd;
 	std::vector<Task*> m_tasks;

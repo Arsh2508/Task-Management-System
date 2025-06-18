@@ -38,6 +38,7 @@
 class Task{
 public:
 	Task();
+	Task(const std::string&, const std::string&, Date&, const std::string&);
 
 	Task(const Task&);
 	Task& operator=(const Task&);
@@ -51,11 +52,14 @@ public:
 	void set_status(Status);
 	void set_prio(Prio);
 	void display_info();
-	const std::string& get_task_id() const;
+	const int get_task_id() const;
 
 private:
-	std::string m_task_id;
-	std::string m_uid;
+	static int id_counter;
+	static int uid_counter;
+
+	int m_task_id;
+	int m_uid;
 	std::string m_title;
 	std::string m_description;
 	Date m_deadline;

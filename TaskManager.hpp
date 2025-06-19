@@ -7,6 +7,16 @@
 
 class TaskManager{
 public:
+	TaskManager();
+
+	TaskManager(const TaskManager&);
+	TaskManager& operator=(const TaskManager&);
+
+	TaskManager(TaskManager&&)noexcept;
+	TaskManager& operator=(TaskManager&&)noexcept;
+
+	~TaskManager();
+
 	void register_user();
 	void login();
 	void logout();

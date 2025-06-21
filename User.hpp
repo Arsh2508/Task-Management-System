@@ -18,7 +18,7 @@ public:
 
 	~User();
 
-	void add_task(const Task&);
+	void add_task(Task*);
 	
 	void delete_task(const int);
 	void edit_task(const int);

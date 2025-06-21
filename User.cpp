@@ -82,9 +82,7 @@ User& User::operator=(User&& rhs) noexcept{
 
 
 User::~User(){
-	for(size_t i = 0; i < m_tasks.size(); ++i){
-		delete m_tasks[i];
-	}
+	m_tasks.clear();
 }
 
 int User::get_id(){
@@ -92,19 +90,18 @@ int User::get_id(){
 } 
 
 
-void User::add_task(const Task& add){
-	m_tasks.push_back(new Task(add));	
+void User::add_task(Task* add){
+	m_tasks.push_back(add);	
 }
 
 
 void User::delete_task(const int task_id){
-	for(size_t i = 0; i < m_tasks.size(); ++i){
-		if(m_tasks[i]->get_task_id() == task_id){
-			delete m_tasks[i];
-			m_tasks.erase(m_tasks.begin() + i);
+	for(auto it = m_tasks.begin(); it != m_tasks.end(); ++it){
+		if((*it)->get_task_id() == task_id){
+			m_tasks.erase(it);
 			return;
 		}
-	}
+	} 
 	std::cout<<"Task not found !\n";
 }
 

@@ -112,29 +112,30 @@ void TaskManager::logout(int uid){
 }
 
 void TaskManager::add_task(const int uid){
-	for(User* u : m_users){
-		if(u->get_id() == uid){
-			std::string title, description, category;	
-			Date deadline;
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-			std::cout << "Enter title: ";
-            std::getline(std::cin, title);
-            std::cout << "Enter description: ";
-            std::getline(std::cin, description);
-            deadline.input();
-            std::cout << "Enter category: ";
-            std::getline(std::cin, category);
-						
-			Task* new_task = new Task(uid, title, description, deadline, category);
-			new_task->set_prio();
-			new_task->set_status();
-			u->add_task(*new_task);
-			m_all_tasks.push_back(new_task);
-			return;
-		}
+	
+	User* u = find_user(uid);
+	if(!u){
+		std::cout<<"No user found with ID"<<uid<<"!\n";
+		return;
 	}
-	std::cout<<"No user found with ID"<<uid<<"!\n";
+	
+	std::string title, description, category;	
+	Date deadline;
+		
+	std::cout << "Enter title: ";
+	std::getline(std::cin, title);
+    std::cout << "Enter description: ";
+    std::getline(std::cin, description);
+    deadline.input();
+    std::cout << "Enter category: ";
+    std::getline(std::cin, category);
+						
+	Task* new_task = new Task(uid, title, description, deadline, category);
+	new_task->set_prio();
+	new_task->set_status();
+
+	u->add_task(new_task);
+	m_all_tasks.push_back(new_task);
 }
 
 void TaskManager::delete_task(const int uid, const int task_id){
@@ -144,6 +145,15 @@ void TaskManager::delete_task(const int uid, const int task_id){
 		return;
 	}
 	u->delete_task(task_id);
+
+	for(auto it = m_all_tasks.begin(); it != m_all_tasks.end(); ++it){
+		if((*it)->get_task_id() == task_id){
+			delete *it;
+			m_all_tasks.erase(it);
+            std::cout << "Task with ID " << task_id << " deleted successfully.\n";
+			return;
+		}
+	}
 }
 
 void TaskManager::edit_task(const int uid, const int task_id){

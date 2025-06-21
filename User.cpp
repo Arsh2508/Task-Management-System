@@ -128,6 +128,7 @@ Task* User::search_task(const int id){
 void User::login(const std::string& passwd){
 	if(passwd == m_passwd){
 		is_logged = true;
+		std::cout<<"You are logged in\n";
 	}
 	else{
 		std::cout<<"Incorrect password!\n";
@@ -146,4 +147,8 @@ void User::edit_task(const int task_id){
 		}
 	}
     std::cout << "No task found with ID " << task_id << '\n';
+}
+
+std::string User::get_name(){
+	return m_name;
 }

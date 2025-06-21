@@ -17,21 +17,23 @@ public:
 
 	~TaskManager();
 
-	void register_user();
-	void login();
-	void logout();
+	int register_user();
+	int login();
+	void logout(const int);
 	 
 	void add_task(const int);
-	void delete_task(const int);
-	void edit_task(const int);
+	void delete_task(const int, const int);
+	void edit_task(const int, const int);
 	void display_task(const int);
+	void display_all_tasks();
+	void display_all_users();
 
-	void Swap(TaskManager&) noexcept; 
-
+	
 private:
 	std::vector<User*> m_users;
 	std::vector<Task*> m_all_tasks;
 	User* find_user(const int) const;
+	void Swap(TaskManager&) noexcept; 
 };
 
 #endif

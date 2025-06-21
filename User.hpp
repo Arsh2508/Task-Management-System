@@ -25,6 +25,7 @@ public:
 	void list_task();
 	Task* search_task(const int);
 	int get_id();
+	std::string get_name();
 
 	void login(const std::string&);
 	void logout();

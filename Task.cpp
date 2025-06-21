@@ -19,9 +19,8 @@ Task::Task(int uid, const std::string& title, const std::string& description, Da
 	, m_description{description}
 	, m_deadline{deadline}
 	, m_category{category}
-	, m_prio{Prio::LOW}
-	, m_status{Status::NOT_STARTED}
-{}
+{
+}
 
 Task::Task(const Task& other) 
 	: m_task_id{other.m_task_id}

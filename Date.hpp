@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 #ifndef DATE_HPP
 #define DATE_HPP
@@ -23,6 +24,9 @@ struct Date{
 			std::cout<<"Enter day: ";
 			std::cin>>day;
 		}while(day < 1 || day > 31);
+
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, const Date& dat){

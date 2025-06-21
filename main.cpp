@@ -5,16 +5,14 @@
 int main()
 {
 	User obj;
-	Task task;
-	task.edit();
+	Task *task = new Task;
+	task->edit();
 	
-	obj.add_task(std::move(task));
-	obj.add_task(task);
+	obj.add_task(std::move(*task));
+	task->set_status();
 	obj.list_task();
 	
 
-	obj.delete_task(2);
 
-	obj.list_task();
 	return 0;
 }

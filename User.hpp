@@ -19,12 +19,14 @@ public:
 	~User();
 
 	void add_task(const Task&);
+	
 	void delete_task(const int);
-	void edit_task();
+	void edit_task(const int);
 	void list_task();
 	Task* search_task(const int);
+	int get_id();
 
-	void login();
+	void login(const std::string&);
 	void logout();
 
 private:

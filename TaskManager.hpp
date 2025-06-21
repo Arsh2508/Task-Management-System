@@ -10,7 +10,7 @@ public:
 	TaskManager();
 
 	TaskManager(const TaskManager&);
-	TaskManager& operator=(const TaskManager&);
+	TaskManager& operator=(TaskManager);
 
 	TaskManager(TaskManager&&)noexcept;
 	TaskManager& operator=(TaskManager&&)noexcept;
@@ -21,14 +21,17 @@ public:
 	void login();
 	void logout();
 	 
-	void add_task();
-	void delete_task();
-	void edit_task();
-	void display_task();
+	void add_task(const int);
+	void delete_task(const int);
+	void edit_task(const int);
+	void display_task(const int);
+
+	void Swap(TaskManager&) noexcept; 
 
 private:
 	std::vector<User*> m_users;
 	std::vector<Task*> m_all_tasks;
+	User* find_user(const int) const;
 };
 
 #endif

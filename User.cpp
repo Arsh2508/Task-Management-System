@@ -4,7 +4,9 @@
 
 int User::id_counter = 0;
 
-User::User() : is_logged{false}
+User::User() 
+	: m_id{++id_counter}
+	, is_logged{false}
 {}
 
 User::User(const std::string& name, const std::string& passwd)
@@ -15,7 +17,7 @@ User::User(const std::string& name, const std::string& passwd)
 {}
 
 User::User(const User& other)
-	: m_id{++id_counter}
+	: m_id{other.m_id}
 	, m_name{other.m_name}
 	, m_passwd{other.m_passwd}
 	, is_logged{other.is_logged}
@@ -29,13 +31,13 @@ User& User::operator=(const User& rhs){
 	if(this == &rhs){
 		return *this;
 	}
-	m_name = rhs.m_name;
-	m_passwd = rhs.m_passwd;
-	is_logged = rhs.is_logged;
-
 	for(size_t i = 0; i < m_tasks.size(); ++i){
 		delete m_tasks[i];	
 	}
+	m_id = rhs.m_id;
+	m_name = rhs.m_name;
+	m_passwd = rhs.m_passwd;
+	is_logged = rhs.is_logged;
 
 	m_tasks.clear();
 
@@ -53,6 +55,7 @@ User::User(User&& other) noexcept
 	, m_tasks{std::move(other.m_tasks)}
 	, is_logged{other.is_logged}
 {
+	other.m_tasks.clear();
 }
 
 User& User::operator=(User&& rhs) noexcept{
@@ -66,11 +69,13 @@ User& User::operator=(User&& rhs) noexcept{
 
 	m_tasks.clear();
 
-	m_id = std::move(rhs.m_id);
+	m_id = rhs.m_id;
 	m_name = std::move(rhs.m_name);
 	m_passwd = std::move(rhs.m_passwd);
 	m_tasks = std::move(rhs.m_tasks);
 	is_logged = rhs.is_logged;
+
+	rhs.m_tasks.clear();
 
 	return *this;
 }
@@ -81,6 +86,10 @@ User::~User(){
 		delete m_tasks[i];
 	}
 }
+
+int User::get_id(){
+	return m_id;
+} 
 
 
 void User::add_task(const Task& add){
@@ -116,10 +125,25 @@ Task* User::search_task(const int id){
 	return nullptr;
 }
 
-void User::login(){
-	is_logged = true;
+void User::login(const std::string& passwd){
+	if(passwd == m_passwd){
+		is_logged = true;
+	}
+	else{
+		std::cout<<"Incorrect password!\n";
+	}
 }
 
 void User::logout(){
 	is_logged = false;
+}
+
+void User::edit_task(const int task_id){
+	for(Task* t : m_tasks){
+		if(t->get_task_id() == task_id){
+			t->edit();
+			return;
+		}
+	}
+    std::cout << "No task found with ID " << task_id << '\n';
 }

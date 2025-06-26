@@ -9,14 +9,14 @@ The system is modular, extensible, and includes unit tests with Google Test.
 • Unique ID assigned to each user.
 
 ## 🗂️ Task Handling
-• Add, edit, delete, and view tasks.
-• Each task includes:
-  🔹 Title
-  🔹 Description
-  🔹 Category
-  🔹 Deadline
-  🔹 Priority (LOW, MID, HIGH, URGENT)
-  🔹 Status (NOT_STARTED, IN_PROGRESS, COMPLETED)
+- Add, edit, delete, and view tasks.
+- Each task includes:
+  - 🔹 Title  
+  - 🔹 Description  
+  - 🔹 Category  
+  - 🔹 Deadline  
+  - 🔹 Priority (LOW, MID, HIGH, URGENT)  
+  - 🔹 Status (NOT_STARTED, IN_PROGRESS, COMPLETED)
 
 ## 📋 Task Overview
 • View all tasks (admin style) or only personal tasks.

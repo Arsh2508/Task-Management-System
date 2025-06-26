@@ -1,14 +1,14 @@
-📝 Task Management System
+#📝 Task Management System
 This project is a console-based Task Management System built in C++ using Object-Oriented Programming (OOP) principles. It allows users to register, log in, and manage personal tasks with priorities, deadlines, categories, and status tracking.
 
 The system is modular, extensible, and includes unit tests with Google Test.
 
-📦 Features
+##📦 Features
 🧑‍💼 User Management
 • Register, log in, and log out securely with credentials.
 • Unique ID assigned to each user.
 
-🗂️ Task Handling
+##🗂️ Task Handling
 • Add, edit, delete, and view tasks.
 • Each task includes:
   🔹 Title
@@ -18,14 +18,14 @@ The system is modular, extensible, and includes unit tests with Google Test.
   🔹 Priority (LOW, MID, HIGH, URGENT)
   🔹 Status (NOT_STARTED, IN_PROGRESS, COMPLETED)
 
-📋 Task Overview
+##📋 Task Overview
 • View all tasks (admin style) or only personal tasks.
 • Display tasks grouped by user.
 
-✅ Unit Testing
+##✅ Unit Testing
 • Modular code tested with Google Test framework.
 
-🗃️ Project Structure
+##🗃️ Project Structure
 ```
 .
 ├── include/           # Header files (.hpp)
@@ -37,29 +37,35 @@ The system is modular, extensible, and includes unit tests with Google Test.
 └── README.md
 ```
 
-🔧 Build & Run Instructions
+##🔧 Build & Run Instructions
 From the root folder, enter the build/ directory:
 
-🔨 Build the Application
+##🔨 Build the Application
+```
 cd build
+```
 make
-▶️ Run the Application
+##▶️ Run the Application
+```
 ./bin/TaskManagement
+```
 
-🧪 Running Tests
+##🧪 Running Tests
 📥 Google Test Setup
 To run unit tests, install Google Test.
 
 Official GitHub:
 👉 https://github.com/google/googletest
 
-🔧 Ubuntu/Debian Users
+##🔧 Ubuntu/Debian Users
 sudo apt install libgtest-dev cmake
 cd /usr/src/gtest
 sudo cmake .
 sudo make
 sudo cp lib/*.a /usr/lib
 
-🧪 Run the Tests
+##🧪 Run the Tests
+```
 make test
 ./bin/TaskManagementTest
+```

@@ -5,8 +5,8 @@ The system is modular, extensible, and includes unit tests with Google Test.
 
 ## 📦 Features
 🧑‍💼 User Management
-• Register, log in, and log out securely with credentials.
-• Unique ID assigned to each user.
+  - 🔹 Register, log in, and log out securely with credentials.
+  - 🔹 Unique ID assigned to each user.
 
 ## 🗂️ Task Handling
 - Add, edit, delete, and view tasks.
@@ -19,11 +19,11 @@ The system is modular, extensible, and includes unit tests with Google Test.
   - 🔹 Status (NOT_STARTED, IN_PROGRESS, COMPLETED)
 
 ## 📋 Task Overview
-• View all tasks (admin style) or only personal tasks.
-• Display tasks grouped by user.
+  -  View all tasks (admin style) or only personal tasks.
+  -  Display tasks grouped by user.
 
 ## ✅ Unit Testing
-• Modular code tested with Google Test framework.
+  - Modular code tested with Google Test framework.
 
 ## 🗃️ Project Structure
 ```
@@ -38,7 +38,7 @@ The system is modular, extensible, and includes unit tests with Google Test.
 ```
 
 ## 🔧 Build & Run Instructions
-From the root folder, enter the build/ directory:
+  - From the root folder, enter the build/ directory:
 
 ## 🔨 Build the Application
 ```
@@ -52,17 +52,19 @@ make
 
 ## 🧪 Running Tests
 📥 Google Test Setup
-To run unit tests, install Google Test.
+- To run unit tests, install Google Test.
 
 Official GitHub:
 👉 https://github.com/google/googletest
 
 ## 🔧 Ubuntu/Debian Users
+```
 sudo apt install libgtest-dev cmake
 cd /usr/src/gtest
 sudo cmake .
 sudo make
 sudo cp lib/*.a /usr/lib
+```
 
 ## 🧪 Run the Tests
 ```

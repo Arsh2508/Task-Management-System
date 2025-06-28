@@ -3,7 +3,6 @@
 #include "Task.hpp"
 #include "User.hpp"
 
-TaskManager::TaskManager() = default;
 
 TaskManager::TaskManager(const TaskManager& other)
 {

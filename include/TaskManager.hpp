@@ -7,7 +7,7 @@
 
 class TaskManager{
 public:
-	TaskManager();
+	TaskManager() = default;
 
 	TaskManager(const TaskManager&);
 	TaskManager& operator=(TaskManager);
